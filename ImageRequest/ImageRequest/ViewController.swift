@@ -21,18 +21,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let imageURL = URL(string: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Cat_November_2010-1a.jpg")!
-        
-        let task = URLSession.shared.dataTask(with: imageURL){ ( data, response, error) in
-           
+        let url = URL(string:"https://upload.wikimedia.org/wikipedia/commons/4/4d/Cat_November_2010-1a.jpg")
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error == nil {
-                let downloadedImage = UIImage(data:data!)
-                
                 performUIUpdatesOnMain {
-                    self.imageView.image = downloadedImage
+                     self.imageView.image = UIImage(data: data!)
                 }
+               
             }
         }
         task.resume()
+       
     }
 }
